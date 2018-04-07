@@ -1,0 +1,16 @@
+language: c
+
+compiler:
+	- gcc
+	- clang
+
+sudo: false
+
+install:
+	- "make"
+	- "make test"
+	- "export PATH=$PWD:$PATH"
+
+script:
+    - "dehomopolymerate -v"
+    - "dehomopolymerate -h"
