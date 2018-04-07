@@ -35,7 +35,7 @@ OUTPUT : seqs=2 bp=14 avglen=7
 
 ### Homebrew
 ```
-brew install brewsci/bio dehomopolymerate   # COMING SOON
+brew install brewsci/bio/dehomopolymerate   # COMING SOON
 ```
 
 ### From source
@@ -51,7 +51,7 @@ make install PREFIX=$HOME/bin
 
 ## Options
 
-### -h (help)
+### `-h` (help)
 
 ```
 % dehomopolymerate -h
@@ -70,7 +70,7 @@ URL
   https://github.com/tseemann/dehomopolymerate (Torsten Seemann)
 ```
 
-### -v (version)
+### `-v` (version)
 
 Prints the name and version separated by a space in standard Unix fashion.
 
@@ -79,11 +79,11 @@ Prints the name and version separated by a space in standard Unix fashion.
 dehomopolymerate 0.1
 ```
 
-### -q (quiet mode)
+### `-q` (quiet)
 
 Don't print informational messages, only errors.
 
-### -f (FASTA output)
+### `-f` (FASTA output)
 
 ```
 % dehomopolymerate -f test/test.fq.gz
@@ -93,7 +93,7 @@ GATC
 TCGTGTCTCT
 ```
 
-### -w (raw sequence output, one per line)
+### `-w` (raw sequence output, one per line)
 
 ```
 % dehomopolymerate -w test/test.fq.gz
@@ -101,7 +101,7 @@ GATC
 TCGTGTCTCT
 ```
 
-### -l MINLEN (minimum length of *output* sequences)
+### `-l MINLEN` (minimum length of *output* sequences)
 
 ```
 % dehomopolymerate -l 6 -f test/test.fq.gz
