@@ -29,6 +29,7 @@ TCGTGTCTCT
 
 INPUT  : seqs=2 bp=30 avglen=15
 OUTPUT : seqs=2 bp=14 avglen=7
+```
 
 ## Installation
 
