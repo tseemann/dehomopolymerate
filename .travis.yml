@@ -18,3 +18,5 @@ script:
   - "dehomopolymerate test/test.fq.gz > /dev/null"
   - "dehomopolymerate -w test/test.fq | wc -l | grep '^7$'"
   - "dehomopolymerate -f test/test.fq.gz | grep '^>SRR2288572.1'"
+  - "dehomopolymerate test/test.fa.gz 2>&1 | grep 'seqs=7 bp=632 avglen=90'"
+  - "dehomopolymerate test/test.fa 2>&1 | grep 'seqs=7 bp=632 avglen=90'"
