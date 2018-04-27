@@ -26,9 +26,12 @@ clean:
 test:
 	./$(EXE) -v
 	./$(EXE) -h
-	./$(EXE) < $(TESTDIR)/test.fq.gz
-	./$(EXE) - < $(TESTDIR)/test.fq.gz
-	./$(EXE) $(TESTDIR)/test.fq.gz
-	./$(EXE) -f $(TESTDIR)/test.fq.gz
-	./$(EXE) -w $(TESTDIR)/test.fq.gz	
+	for SEQ in test/test.f* ; do \
+	  for OPTS in "-f" "-w" ; do \
+  	    echo -ne "Checking $$OPTS $$SEQ\t => " ; \
+	    ./$(EXE) $$OPTS $$SEQ 2>&1 | grep -q 'seqs=7 bp=632 avglen=90' || echo "FAIL" && echo "PASS"; \
+  	    echo -ne "Checking $$OPTS - < $$SEQ\t => " ; \
+	    ./$(EXE) $$OPTS - < $$SEQ 2>&1 | grep -q 'seqs=7 bp=632 avglen=90' || echo "FAIL" && echo "PASS"; \
+	  done ; \
+	done
 

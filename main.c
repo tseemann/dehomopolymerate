@@ -31,25 +31,28 @@ void show_help(int retcode)
 
 //------------------------------------------------------------------------
 int kseq_remove_homopolymers(kseq_t* r) {
+  int fq = r->qual.l; 
   char s2[r->seq.l+1];
   char q2[r->seq.l+1];
   char* s = r->seq.s;
   char* q = r->qual.s;
   size_t j=1, i=1;
   s2[0] = s[0];
-  q2[0] = q[0];
+  if (fq) q2[0] = q[0];
   for (; i < r->seq.l; i++) {
     if (s[i] != s[i-1]) {
       s2[j] = s[i];
-      q2[j] = q[i];
+      if (fq) q2[j] = q[i];
       j++;
     }
   }
-  s2[j] = q2[j] = '\0';
+  s2[j] = '\0';
+  if (fq) q2[j] = '\0';
   //printf("i=%u j=%u s2=%s q2=%s\n", i, j, s2, q2);
   strcpy(s, s2);
-  strcpy(q, q2);
-  r->seq.l = r->qual.l = j;
+  if (fq) strcpy(q, q2);
+  r->seq.l = j;
+  if (fq) r->qual.l = j;
   return j;
 }
  
@@ -121,7 +124,7 @@ int main(int argc, char *argv[])
     if (raw) {
       puts(kseq->seq.s);
     }
-    else if (fasta) {
+    else if (fasta || kseq->qual.l <= 0) {   // want fasta, or input was fasta
       printf(">%s\n%s\n", kseq->name.s, kseq->seq.s);
     }
     else {
