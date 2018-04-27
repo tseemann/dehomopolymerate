@@ -7,7 +7,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -O3 -std=c99 
 LIBS = -lz -lm
 
-.PHONY: check clean
+.PHONY: test clean 
 .DEFAULT: all
 
 all: $(EXE)
