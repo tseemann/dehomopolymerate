@@ -61,11 +61,12 @@ SYNOPSIS
 USAGE
   dehomopolymerate [options] reads.fast{aq}[.gz] > nohomop.fq
 OPTIONS
-  -h    Show this help
-  -v    Print version and exit
-  -q    Quiet mode; not non-error output
-  -f    Output FASTA not FASTQ
-  -w    Output RAW one line per sequence
+  -h      Show this help
+  -v      Print version and exit
+  -q      Quiet mode; not non-error output
+  -f      Output FASTA not FASTQ
+  -w      Output RAW one line per sequence
+  -l LEN  Discard output sequences shorter then L bp
 URL
   https://github.com/tseemann/dehomopolymerate (Torsten Seemann)
 ```
@@ -76,7 +77,7 @@ Prints the name and version separated by a space in standard Unix fashion.
 
 ```
 % dehomopolymerate -v
-dehomopolymerate 0.1
+dehomopolymerate 0.3
 ```
 
 ### `-q` (quiet)
