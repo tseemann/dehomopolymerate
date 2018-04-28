@@ -20,3 +20,4 @@ script:
   - "dehomopolymerate -f test/test.fq.gz | grep '^>SRR2288572.1'"
   - "dehomopolymerate test/test.fa.gz 2>&1 | grep 'seqs=7 bp=632 avglen=90'"
   - "dehomopolymerate test/test.fa 2>&1 | grep 'seqs=7 bp=632 avglen=90'"
+  - "dehomopolymerate -l 100 - < test/test.fa.gz 2>&1 | grep 'seqs=2 bp=485 avglen=242'"

@@ -27,7 +27,7 @@ test:
 	./$(EXE) -v
 	./$(EXE) -h
 	for SEQ in test/test.f* ; do \
-	  for OPTS in "-f" "-w" ; do \
+	  for OPTS in "-f" "-w" "-l 5"; do \
   	    echo -ne "Checking $$OPTS $$SEQ\t => " ; \
 	    ./$(EXE) $$OPTS $$SEQ 2>&1 | grep -q 'seqs=7 bp=632 avglen=90' || echo "FAIL" && echo "PASS"; \
   	    echo -ne "Checking $$OPTS - < $$SEQ\t => " ; \

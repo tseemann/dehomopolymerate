@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <zlib.h>
 #include <getopt.h>
 
@@ -20,11 +21,12 @@ void show_help(int retcode)
   fprintf(out, "SYNOPSIS\n  Collapse sequence homopolymers to a single character\n");
   fprintf(out, "USAGE\n  %s [options] reads.fast{aq}[.gz] > nohomop.fq\n", EXENAME);
   fprintf(out, "OPTIONS\n");
-  fprintf(out, "  -h\tShow this help\n");
-  fprintf(out, "  -v\tPrint version and exit\n");
-  fprintf(out, "  -q\tQuiet mode; not non-error output\n");
-  fprintf(out, "  -f\tOutput FASTA not FASTQ\n");
-  fprintf(out, "  -w\tOutput RAW one line per sequence\n");
+  fprintf(out, "  -h      Show this help\n");
+  fprintf(out, "  -v      Print version and exit\n");
+  fprintf(out, "  -q      Quiet mode; not non-error output\n");
+  fprintf(out, "  -f      Output FASTA not FASTQ\n");
+  fprintf(out, "  -w      Output RAW one line per sequence\n");
+  fprintf(out, "  -l LEN  Discard output sequences shorter then L bp\n");
   fprintf(out, "URL\n  %s (%s)\n", GITHUB_URL, AUTHOR);
   exit(retcode);
 }
@@ -61,21 +63,21 @@ int main(int argc, char *argv[])
 {
   // parse command line parameters
   int opt, quiet=0, fasta=0, raw=0, minlen=0;
-  while ((opt = getopt(argc, argv, "hqfwvl:")) != -1) {
+  while ((opt = getopt(argc, argv, "hvql:fw")) != -1) {
     switch (opt) {
       case 'h': show_help(EXIT_SUCCESS); break;
+      case 'v': printf("%s %s\n", EXENAME, VERSION); exit(EXIT_SUCCESS);
       case 'q': quiet=1; break;
       case 'f': fasta=1; break;
       case 'w': raw=1; break;
-      case 'l': minlen=atoi(argv[optind]); break;
-      case 'v': printf("%s %s\n", EXENAME, VERSION); exit(EXIT_SUCCESS);
+      case 'l': minlen=atoi(optarg); break;
       default : show_help(EXIT_FAILURE);
     }
   } 
 
   // say hello
   if (!quiet) {
-    //fprintf(stderr, "This is %s %s from %s\n", EXENAME, VERSION, GITHUB_URL);
+    //fprintf(stderr, "RUNNING: %s %s from %s\n", EXENAME, VERSION, GITHUB_URL);
     //fprintf(stderr, "minlen=%d\n", minlen);
   }
   // open stdin or the file on commandline
@@ -106,16 +108,20 @@ int main(int argc, char *argv[])
     fprintf(stderr, "ERROR: Could not gzopen input\n");
     exit(EXIT_FAILURE);  
   }
-  
-  // loop over sequences
+
+  // setup loop  
   long l, N=0, L=0, L2=0, N2=0;
   kseq_t* kseq = kseq_init(fp);
 
+  // loop over sequences
   while ((l = kseq_read(kseq)) >= 0) {    
+    // keep input stats
     N++;
     L += l;
-    // tranform in place
+    
+    // tranform in place - will be shorter so no alloc() needed
     int len = kseq_remove_homopolymers(kseq);
+    // fprintf(stderr, "l=%ld l'=%d minlen=%d\n", l, len, minlen);
     
     // skip over short sequences as per -l parameter
     if (len < minlen) continue;
@@ -131,10 +137,12 @@ int main(int argc, char *argv[])
       // not printing comment here
       printf("@%s\n%s\n+\n%s\n", kseq->name.s, kseq->seq.s, kseq->qual.s);
     }
-    // keep stats
+    // keep output stats
     L2 += len;
     N2++;
   }
+  
+  // cleanup
   kseq_destroy(kseq); 
   gzclose(fp); 
 
