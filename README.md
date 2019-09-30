@@ -1,4 +1,7 @@
-[![Build Status](https://travis-ci.org/tseemann/dehomopolymerate.svg?branch=master)](https://travis-ci.org/tseemann/dehomopolymerate) [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Build Status](https://travis-ci.org/tseemann/dehomopolymerate.svg?branch=master)](https://travis-ci.org/tseemann/dehomopolymerate)
+[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Language: C99](https://img.shields.io/badge/Language-C99-orangered.svg)](https://en.wikipedia.org/wiki/C99)
+
 # dehomopolymerate
 Collapse sequence homopolymers to a single character
 
@@ -35,7 +38,12 @@ OUTPUT : seqs=2 bp=14 avglen=7
 
 ### Homebrew
 ```
-brew install brewsci/bio/dehomopolymerate   # COMING SOON
+brew install brewsci/bio/dehomopolymerate
+```
+
+### Conda
+```
+brew install -c bioconda dehomopolymerate
 ```
 
 ### From source
@@ -112,7 +120,8 @@ TCGTGTCTCT
 
 ## Issues
 
-File problems here: https://github.com/tseemann/dehomopolymerate/issues
+File concerns at the
+[Issue Tracker](https://github.com/tseemann/dehomopolymerate/issues)
 
 ## License
 
