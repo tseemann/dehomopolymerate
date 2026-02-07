@@ -38,25 +38,8 @@ OUTPUT : seqs=2 bp=14 avglen=7
 
 ## Installation
 
-### Homebrew
 ```
-brew install brewsci/bio/dehomopolymerate
-```
-
-### Conda
-```
-brew install -c bioconda dehomopolymerate
-```
-
-### From source
-`dehomopolymerate` is written in C to the C99 standard 
-and only depends on `gcc` and `libz`.
-
-```
-git clone https://github.com/tseemann/dehomopolymerate.git
-cd dehomopolymerate
-make 
-make install PREFIX=$HOME/bin
+conda install -c bioconda dehomopolymerate
 ```
 
 ## Options
