@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -eux -o pipefail
 
 EXE=../dehomopolymerate
 
@@ -18,4 +19,3 @@ for SEQ in test.{fa,fq,fa.gz,fq.gz}; do
   echo -ne "Checking $OPTS - < $SEQ\t=>\t"
   $EXE $OPTS $SEQ 2>&1 | grep -q -F "$ANSWER2" || echo "FAIL" && echo "PASS"
 done
-

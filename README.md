@@ -1,5 +1,7 @@
-[![Build Status](https://travis-ci.org/tseemann/dehomopolymerate.svg?branch=master)](https://travis-ci.org/tseemann/dehomopolymerate)
-[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![CI](https://github.com/tseemann/dehomopolymerate/workflows/CI/badge.svg)](https://github.com/tseemann/dehomopolymerate/actions)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/tseemann/dehomopolymerate)](https://github.com/tseemann/dehomopolymerate/releases)
+[![Bioconda downloads](https://img.shields.io/conda/dn/bioconda/dehomopolymerate)](https://bioconda.github.io/recipes/dehomopolymerate/README.html)
+[![License: GPLv3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Language: C99](https://img.shields.io/badge/Language-C99-orangered.svg)](https://en.wikipedia.org/wiki/C99)
 
 # dehomopolymerate

@@ -9,7 +9,7 @@ KSEQ_INIT(gzFile, gzread)
 #define EXENAME "dehomopolymerate"
 #define GITHUB_URL "https://github.com/tseemann/dehomopolymerate"
 #define AUTHOR "Torsten Seemann"
-#define VERSION "0.4.0"
+#define VERSION "0.4.1"
 
 // warning: implicit declaration of function 'fileno' [-Wimplicit-function-declaration]
 int fileno(FILE *stream);
